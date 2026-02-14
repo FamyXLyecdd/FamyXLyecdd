@@ -1,0 +1,142 @@
+
+<svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        /* Imported Font */
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
+
+        .container {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            font-size: 14px;
+            fill: oklch(0.95 0.02 200);
+        }
+
+        /* Glassmorphism Background */
+        .terminal-bg {
+            fill: #050505;
+            fill-opacity: 0.85;
+            stroke: rgba(255, 255, 255, 0.1);
+            stroke-width: 1;
+            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.5));
+            backdrop-filter: blur(10px); /* Only works in some renderers, but good to have */
+        }
+
+        /* Header Circle Decorations */
+        .circle { r: 6px; }
+        .red { fill: #FF5F56; }
+        .yellow { fill: #FFBD2E; }
+        .green { fill: #27C93F; }
+
+        /* ASCII Art Gradient Animation */
+        .ascii-art {
+            font-family: monospace;
+            white-space: pre;
+            font-size: 10px; /* Adjust based on ASCII size */
+            font-weight: bold;
+            fill: url(#gradient);
+            animation: pulse-glow 3s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { filter: drop-shadow(0 0 2px oklch(0.6 0.18 20)); }
+            to { filter: drop-shadow(0 0 8px oklch(0.8 0.15 180)); }
+        }
+
+        /* Typing Animation */
+        .typing-line {
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid oklch(0.85 0.16 90);
+            width: 0;
+            animation: typing 3s steps(40, end) forwards, blink 0.75s step-end infinite;
+        }
+        
+        /* Staggered animations for multiline bio */
+        .line-1 { animation-delay: 0s; width: 0; animation-fill-mode: forwards; }
+        .line-2 { animation-delay: 2s; width: 0; animation-fill-mode: forwards; }
+        .line-3 { animation-delay: 4s; width: 0; animation-fill-mode: forwards; }
+        .line-4 { animation-delay: 6s; width: 0; animation-fill-mode: forwards; }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; border-right-color: transparent; } /* Remove cursor at end */
+        }
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: oklch(0.85 0.16 90); }
+        }
+
+        /* Prompt Styling */
+        .prompt {
+            font-weight: bold;
+        }
+        .user { fill: oklch(0.8 0.15 180); }
+        .at { fill: oklch(0.5 0.05 200); }
+        .host { fill: oklch(0.6 0.18 20); }
+        .path { fill: oklch(0.85 0.16 90); }
+        
+        .cursor-blink {
+             animation: blink 1s step-end infinite;
+             fill: oklch(0.85 0.16 90);
+        }
+
+    </style>
+
+    <!-- Definitions for Gradients -->
+    <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:oklch(0.6 0.18 20);stop-opacity:1" />
+            <stop offset="50%" style="stop-color:oklch(0.8 0.15 180);stop-opacity:1" />
+            <stop offset="100%" style="stop-color:oklch(0.85 0.16 90);stop-opacity:1" />
+        </linearGradient>
+    </defs>
+
+    <!-- Background Window -->
+    <rect x="0" y="0" width="800" height="450" rx="12" class="terminal-bg" />
+
+    <!-- Window Controls -->
+    <circle cx="24" cy="24" class="circle red" />
+    <circle cx="44" cy="24" class="circle yellow" />
+    <circle cx="64" cy="24" class="circle green" />
+    
+    <!-- Title Bar Text -->
+    <text x="400" y="28" text-anchor="middle" class="container" style="fill: oklch(0.5 0.05 200); font-size: 12px;">
+        famy@dev-machine — -bash — 80x24
+    </text>
+
+    <!-- Terminal Content -->
+    <g transform="translate(24, 60)" class="container">
+        
+        <!-- Command 1 -->
+        <text x="0" y="0" class="prompt">
+            <tspan class="user">famy</tspan><tspan class="at">@</tspan><tspan class="host">dev-machine</tspan><tspan class="at">:</tspan><tspan class="path">~</tspan>$ FIGlet "FAMY"
+        </text>
+
+        <!-- ASCII Art Output: Split into tspans for correct multiline rendering -->
+        <text x="0" y="50" class="ascii-art" xml:space="preserve">
+<tspan x="0" dy="1.1em">███████╗ █████╗ ███╗   ███╗██╗   ██╗</tspan><tspan x="0" dy="1.1em">██╔════╝██╔══██╗████╗ ████║╚██╗ ██╔╝</tspan><tspan x="0" dy="1.1em">█████╗  ███████║██╔████╔██║ ╚████╔╝ </tspan><tspan x="0" dy="1.1em">██╔══╝  ██╔══██║██║╚██╔╝██║  ╚██╔╝  </tspan><tspan x="0" dy="1.1em">██║     ██║  ██║██║ ╚═╝ ██║   ██║   </tspan><tspan x="0" dy="1.1em">╚═╝     ╚═╝  ╚═╝╚═╝     ╚═╝   ╚═╝   </tspan><tspan x="0" dy="1.1em">                                    </tspan>
+        </text>
+
+        <!-- Command 2 -->
+        <text x="0" y="160" class="prompt">
+            <tspan class="user">famy</tspan><tspan class="at">@</tspan><tspan class="host">dev-machine</tspan><tspan class="at">:</tspan><tspan class="path">~</tspan>$ cat bio.txt
+        </text>
+
+        <!-- Bio Output with Typing Effect -->
+        <g transform="translate(0, 185)">
+            <text x="0" y="0" style="opacity: 0; animation: fade-in 0.5s forwards 0s;">> I'm good at every coding language</text><text x="0" y="24" style="opacity: 0; animation: fade-in 0.5s forwards 1.5s;">> and using frameworks</text><text x="0" y="48" style="opacity: 0; animation: fade-in 0.5s forwards 3s;">> and making android app</text><text x="0" y="72" style="opacity: 0; animation: fade-in 0.5s forwards 4.5s;">> and i mainly make automation and sites</text>
+        </g>
+        
+        <style>
+            @keyframes fade-in {
+                to { opacity: 1; }
+            }
+        </style>
+        
+        <!-- Command 3 (Active) -->
+        <text x="0" y="305" class="prompt">
+            <tspan class="user">famy</tspan><tspan class="at">@</tspan><tspan class="host">dev-machine</tspan><tspan class="at">:</tspan><tspan class="path">~</tspan>$ <tspan class="cursor-blink">_</tspan>
+        </text>
+
+    </g>
+</svg>
+    
