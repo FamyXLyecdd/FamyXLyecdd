@@ -1,9 +1,6 @@
 
 <svg width="800" height="450" viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg">
     <style>
-        /* Imported Font */
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap');
-
         .container {
             font-family: 'Fira Code', 'Consolas', monospace;
             font-size: 14px;
